@@ -7,9 +7,14 @@ export default function Home() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ 
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest" 
+    });
   };
 
   useEffect(() => {
@@ -20,6 +25,13 @@ export default function Home() {
     const userMessage = { text: message, isUser: true };
     setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
+
+    // 메시지 전송 후 즉시 입력창에 포커스 유지
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 100);
 
     try {
       const response = await fetch('/api/chat', {
@@ -47,11 +59,20 @@ export default function Home() {
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      // 응답 완료 후에도 포커스 유지
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+        }
+      }, 200);
     }
   };
 
   const handleNewChat = () => {
     setMessages([]);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   return (
@@ -83,7 +104,7 @@ export default function Home() {
       {/* Chat Container */}
       <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-4 py-6">
+        <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
@@ -144,7 +165,11 @@ export default function Home() {
         
         {/* Input Area */}
         <div className="border-t border-gray-100 bg-white px-4 py-4">
-          <ChatInput onSend={handleSendMessage} disabled={isLoading} />
+          <ChatInput 
+            ref={inputRef}
+            onSend={handleSendMessage} 
+            disabled={isLoading} 
+          />
         </div>
       </main>
     </div>
