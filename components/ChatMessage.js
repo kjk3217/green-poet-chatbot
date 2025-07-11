@@ -6,7 +6,7 @@ export default function ChatMessage({ message, isUser }) {
       {/* Avatar */}
       <div className="flex-shrink-0">
         {isUser ? (
-          <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
             <User className="w-4 h-4 text-white" />
           </div>
         ) : (
@@ -18,11 +18,17 @@ export default function ChatMessage({ message, isUser }) {
       
       {/* Message Content */}
       <div className="flex-1 space-y-1">
-        <div className="text-sm font-medium text-gray-900">
+        <div className={`text-sm font-medium ${
+          isUser ? 'text-blue-700' : 'text-green-700'
+        }`}>
           {isUser ? '나' : '초록시인'}
         </div>
         <div className="prose prose-sm max-w-none">
-          <div className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+          <div className={`leading-relaxed whitespace-pre-wrap ${
+            isUser 
+              ? 'text-blue-900 bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400' 
+              : 'text-gray-800'
+          }`}>
             {message}
           </div>
         </div>
