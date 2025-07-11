@@ -173,7 +173,7 @@ export default function Home() {
           )}
         </div>
         
-        <div className="border-t border-green-100 bg-white/80 backdrop-blur-sm px-4 py-4">
+        <div className="border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm px-4 py-4">
           <ChatInput 
             ref={inputRef}
             onSend={handleSendMessage} 
