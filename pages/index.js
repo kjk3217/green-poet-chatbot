@@ -86,7 +86,7 @@ export default function Home() {
             </div>
             <div>
               <h1 className="text-lg font-medium text-gray-900">초록시인</h1>
-              <p className="text-xs text-gray-500">저탄소 녹색성장 창작시 도우미</p>
+              <p className="text-xs text-gray-500">저탄소 녹색성장 창작시 AI 도우미</p>
             </div>
           </div>
           {messages.length > 0 && (
@@ -115,7 +115,7 @@ export default function Home() {
                   안녕하세요, 초록시인입니다
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  저탄소 녹색성장을 주제로 한 창작시를 함께 만들어봐요. 환경 보호의 마음을 시로 표현하는 방법을 알려드릴게요.
+                  저탄소 녹색성장을 주제로 한 창작시를 함께 만들어봐요.
                 </p>
                 <div className="grid grid-cols-1 gap-2">
                   {[
