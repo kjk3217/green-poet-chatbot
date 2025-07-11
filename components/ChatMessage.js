@@ -1,25 +1,30 @@
-import { User, Bot } from 'lucide-react';
+import { User, Feather } from 'lucide-react';
 
 export default function ChatMessage({ message, isUser }) {
   return (
-    <div className={`flex gap-3 p-4 ${isUser ? 'bg-blue-50' : 'bg-green-50'} rounded-lg mb-4`}>
-      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-        isUser ? 'bg-blue-500' : 'bg-green-500'
-      }`}>
+    <div className="flex gap-4 group">
+      {/* Avatar */}
+      <div className="flex-shrink-0">
         {isUser ? (
-          <User className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+            <User className="w-4 h-4 text-white" />
+          </div>
         ) : (
-          <Bot className="w-5 h-5 text-white" />
+          <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-green-500 rounded-lg flex items-center justify-center">
+            <Feather className="w-4 h-4 text-white" />
+          </div>
         )}
       </div>
-      <div className="flex-1">
-        <div className={`font-medium text-sm mb-1 ${
-          isUser ? 'text-blue-700' : 'text-green-700'
-        }`}>
-          {isUser ? '학생' : '초록시인'}
+      
+      {/* Message Content */}
+      <div className="flex-1 space-y-1">
+        <div className="text-sm font-medium text-gray-900">
+          {isUser ? '나' : '초록시인'}
         </div>
-        <div className="text-gray-800 whitespace-pre-wrap leading-relaxed">
-          {message}
+        <div className="prose prose-sm max-w-none">
+          <div className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+            {message}
+          </div>
         </div>
       </div>
     </div>
