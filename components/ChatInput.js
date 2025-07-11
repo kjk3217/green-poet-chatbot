@@ -13,12 +13,10 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
     }
   }));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (message.trim() && !disabled) {
       onSend(message);
       setMessage('');
-      // 메시지 전송 후 즉시 포커스 유지
       setTimeout(() => {
         if (textareaRef.current) {
           textareaRef.current.focus();
@@ -30,52 +28,49 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e);
+      handleSubmit();
     }
   };
 
   const handleInputChange = (e) => {
     setMessage(e.target.value);
-    // 자동 높이 조절
     e.target.style.height = 'auto';
     e.target.style.height = Math.min(e.target.scrollHeight, 128) + 'px';
   };
 
   return (
     <div className="relative">
-      <form onSubmit={handleSubmit}>
-        <div className="relative flex items-end border border-gray-200 rounded-2xl bg-white focus-within:border-blue-400 focus-within:shadow-sm transition-all duration-200">
-          <textarea
-            ref={textareaRef}
-            value={message}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder="창작시에 대해 궁금한 것을 물어보세요..."
-            className="flex-1 p-4 pr-12 border-0 resize-none focus:outline-none focus:ring-0 rounded-2xl max-h-32 min-h-[52px] placeholder-gray-400"
-            disabled={disabled}
-            rows={1}
-            style={{
-              height: 'auto',
-              minHeight: '52px',
-              maxHeight: '128px',
-              overflowY: message.split('\n').length > 3 ? 'auto' : 'hidden'
-            }}
-          />
-          
-          <div className="absolute right-2 bottom-2 flex items-center gap-1">
-            <button
-              type="submit"
-              disabled={!message.trim() || disabled}
-              className="w-8 h-8 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg flex items-center justify-center transition-colors duration-200"
-            >
-              <Send className="w-4 h-4" />
-            </button>
-          </div>
+      <div className="relative flex items-end border-2 border-green-200 rounded-2xl bg-white focus-within:border-green-400 focus-within:shadow-lg transition-all duration-200">
+        <textarea
+          ref={textareaRef}
+          value={message}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder="창작시에 대해 궁금한 것을 물어보세요... 🌱"
+          className="flex-1 p-4 pr-14 border-0 resize-none focus:outline-none focus:ring-0 rounded-2xl max-h-32 min-h-[56px] placeholder-gray-400 text-gray-700"
+          disabled={disabled}
+          rows={1}
+          style={{
+            height: 'auto',
+            minHeight: '56px',
+            maxHeight: '128px',
+          }}
+        />
+        
+        <div className="absolute right-3 bottom-3 flex items-center gap-1">
+          <button
+            onClick={handleSubmit}
+            disabled={!message.trim() || disabled}
+            className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white rounded-xl flex items-center justify-center transition-all duration-200 shadow-lg"
+          >
+            <Send className="w-5 h-5" />
+          </button>
         </div>
-      </form>
+      </div>
       
-      <div className="flex items-center justify-between mt-2 px-1">
-        <div className="text-xs text-gray-500">
+      <div className="flex items-center justify-between mt-3 px-2">
+        <div className="text-xs text-gray-500 flex items-center gap-1">
+          <span>✨</span>
           Shift + Enter로 줄바꿈
         </div>
         <div className="text-xs text-gray-400">
