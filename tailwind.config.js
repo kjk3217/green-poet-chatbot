@@ -3,6 +3,7 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -16,7 +17,7 @@ module.exports = {
         }
       },
       animation: {
-        'bounce': 'bounce 1.4s infinite ease-in-out',
+        'pulse': 'pulse 1.5s ease-in-out infinite',
       }
     },
   },
