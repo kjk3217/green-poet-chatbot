@@ -120,7 +120,7 @@ export default function Home() {
                   안녕하세요, 초록시인입니다
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-                  저탄소 녹색성장을 주제로 한 창작시를 함께 만들어봐요. 🌍💚
+                  저탄소 녹색성장을 주제로 한 창작시를 함께 만들어봐요.
                 </p>
                 
                 <div className="grid grid-cols-1 gap-3">
