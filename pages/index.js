@@ -86,7 +86,7 @@ export default function Home() {
             </div>
             <div>
               <h1 className="text-lg font-medium text-gray-900">초록시인</h1>
-              <p className="text-xs text-gray-500">창작시 도우미</p>
+              <p className="text-xs text-gray-500">저탄소 녹색성장 창작시 도우미</p>
             </div>
           </div>
           {messages.length > 0 && (
@@ -115,13 +115,14 @@ export default function Home() {
                   안녕하세요, 초록시인입니다
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  창작시를 쓰는데 도움이 필요하신가요? 주제 선택부터 표현 기법까지 무엇이든 물어보세요.
+                  저탄소 녹색성장을 주제로 한 창작시를 함께 만들어봐요. 환경 보호의 마음을 시로 표현하는 방법을 알려드릴게요.
                 </p>
                 <div className="grid grid-cols-1 gap-2">
                   {[
-                    "시의 주제를 추천해줘",
-                    "감정 표현 방법을 알려줘",
-                    "봄을 주제로 한 시 쓰기 도움"
+                    "환경 보호를 비유로 어떻게 표현할까?",
+                    "지구의 현재 모습을 계절로 비유한다면?",
+                    "녹색성장을 의인법으로 표현해줘",
+                    "저탄소 생활을 시로 써보고 싶어"
                   ].map((suggestion, index) => (
                     <button
                       key={index}
