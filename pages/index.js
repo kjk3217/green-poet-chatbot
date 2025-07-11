@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import ChatMessage from '../components/ChatMessage';
 import ChatInput from '../components/ChatInput';
-import { Feather, Sparkles } from 'lucide-react';
+import { Feather, Sparkles, RotateCcw } from 'lucide-react';
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -50,80 +50,103 @@ export default function Home() {
     }
   };
 
+  const handleNewChat = () => {
+    setMessages([]);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex flex-col">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-green-100">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-center gap-3">
-            <div className="bg-green-500 p-3 rounded-full">
-              <Feather className="w-8 h-8 text-white" />
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Minimal Header */}
+      <header className="border-b border-gray-100 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-green-500 rounded-lg flex items-center justify-center">
+              <Feather className="w-4 h-4 text-white" />
             </div>
-            <div className="text-center">
-              <h1 className="text-3xl font-bold text-green-700 mb-1">초록시인</h1>
-              <p className="text-gray-600">창작시를 도와주는 AI 친구</p>
+            <div>
+              <h1 className="text-lg font-medium text-gray-900">초록시인</h1>
+              <p className="text-xs text-gray-500">창작시 도우미</p>
             </div>
           </div>
+          {messages.length > 0 && (
+            <button
+              onClick={handleNewChat}
+              className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <RotateCcw className="w-4 h-4" />
+              새 대화
+            </button>
+          )}
         </div>
       </header>
 
-      {/* Main Chat Area */}
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-6">
-        <div className="bg-white rounded-lg shadow-lg h-full flex flex-col">
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.length === 0 && (
-              <div className="text-center py-12">
-                <Sparkles className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                <h2 className="text-xl font-semibold text-gray-700 mb-2">
-                  안녕하세요! 초록시인이에요 🌱
-                </h2>
-                <p className="text-gray-500 max-w-md mx-auto leading-relaxed">
-                  창작시를 쓰는데 도움이 필요하신가요? 
-                  주제 선택부터 표현 기법까지 무엇이든 물어보세요!
-                </p>
-              </div>
-            )}
-            
-            {messages.map((message, index) => (
-              <ChatMessage
-                key={index}
-                message={message.text}
-                isUser={message.isUser}
-              />
-            ))}
-            
-            {isLoading && (
-              <div className="flex gap-3 p-4 bg-green-50 rounded-lg">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-                  <Feather className="w-5 h-5 text-white" />
+      {/* Chat Container */}
+      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
+        {/* Messages Area */}
+        <div className="flex-1 overflow-y-auto px-4 py-6">
+          {messages.length === 0 ? (
+            <div className="h-full flex items-center justify-center">
+              <div className="text-center max-w-md">
+                <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Sparkles className="w-8 h-8 text-white" />
                 </div>
-                <div className="flex-1">
-                  <div className="font-medium text-sm mb-1 text-green-700">초록시인</div>
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                <h2 className="text-xl font-medium text-gray-900 mb-3">
+                  안녕하세요, 초록시인입니다
+                </h2>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  창작시를 쓰는데 도움이 필요하신가요? 주제 선택부터 표현 기법까지 무엇이든 물어보세요.
+                </p>
+                <div className="grid grid-cols-1 gap-2">
+                  {[
+                    "시의 주제를 추천해줘",
+                    "감정 표현 방법을 알려줘",
+                    "봄을 주제로 한 시 쓰기 도움"
+                  ].map((suggestion, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleSendMessage(suggestion)}
+                      className="p-3 text-sm text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors text-left"
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {messages.map((message, index) => (
+                <ChatMessage
+                  key={index}
+                  message={message.text}
+                  isUser={message.isUser}
+                />
+              ))}
+              
+              {isLoading && (
+                <div className="flex gap-4">
+                  <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Feather className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="flex-1 pt-1">
+                    <div className="flex gap-1 mb-2">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style={{animationDelay: '0.4s'}}></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-          
-          {/* Input */}
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+          )}
+        </div>
+        
+        {/* Input Area */}
+        <div className="border-t border-gray-100 bg-white px-4 py-4">
           <ChatInput onSend={handleSendMessage} disabled={isLoading} />
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 py-4">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-sm text-gray-500">
-            💡 <strong>사용 팁:</strong> "시의 주제를 추천해줘", "감정 표현 방법을 알려줘" 등으로 질문해보세요!
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
