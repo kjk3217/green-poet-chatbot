@@ -68,7 +68,7 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
         </div>
       </div>
       
-      <div className="flex items-center justify-between mt-3 px-2">
+      <div className="flex items-center justify-between mt-3 px-2 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
         <div className="text-xs text-gray-500 flex items-center gap-1">
           <span>✨</span>
           Shift + Enter로 줄바꿈
