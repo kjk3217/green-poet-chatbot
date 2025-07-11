@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   margin: 0;
@@ -38,46 +38,6 @@ textarea {
   field-sizing: content;
 }
 
-/* Prose styles for message content */
-.prose {
-  color: #374151;
-  max-width: 100%;
-}
-
-.prose p {
-  margin-bottom: 1em;
-}
-
-.prose p:last-child {
-  margin-bottom: 0;
-}
-
-.prose strong {
-  font-weight: 600;
-  color: #111827;
-}
-
-.prose em {
-  font-style: italic;
-}
-
-.prose code {
-  background-color: #f3f4f6;
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  font-family: ui-monospace, SFMono-Regular, monospace;
-}
-
-.prose ul, .prose ol {
-  margin: 1em 0;
-  padding-left: 1.5em;
-}
-
-.prose li {
-  margin: 0.5em 0;
-}
-
 /* Animation */
 @keyframes pulse {
   0%, 100% {
@@ -97,26 +57,9 @@ input:focus, textarea:focus, button:focus {
   outline: none;
 }
 
-/* Backdrop blur support */
-@supports (backdrop-filter: blur(8px)) {
-  .backdrop-blur-sm {
-    backdrop-filter: blur(8px);
-  }
-}
-
 /* Mobile optimizations */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
-  }
-  
-  /* Prevent zoom on input focus in iOS */
   input, textarea, select {
     font-size: 16px;
   }
-}
-
-/* Dark mode support (future enhancement) */
-@media (prefers-color-scheme: dark) {
-  /* Can be expanded later for dark mode */
 }
