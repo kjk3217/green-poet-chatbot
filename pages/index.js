@@ -23,7 +23,8 @@ export default function Home() {
 
   const handleSendMessage = async (message) => {
     const userMessage = { text: message, isUser: true };
-    setMessages(prev => [...prev, userMessage]);
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
     setIsLoading(true);
 
     setTimeout(() => {
@@ -38,7 +39,10 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ 
+          message,
+          conversationHistory: messages // 이전 대화 기록 전달
+        }),
       });
 
       const data = await response.json();
