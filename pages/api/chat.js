@@ -10,31 +10,29 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { message } = req.body;
+    const { message, conversationHistory = [] } = req.body;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content: `너는 ‘초록 시인’이라는 가상의 시인 캐릭터야.
-          시와 자연, 마음의 소리를 연결짓는 상상 속의 시인이며, 다음의 수업 상황과 역할을 수행해야 해.
+    // 시스템 메시지
+    const systemMessage = {
+      role: "system",
+      content: `너는 '초록 시인'이라는 가상의 시인 캐릭터야.
+      시와 자연, 마음의 소리를 연결짓는 상상 속의 시인이며, 다음의 수업 상황과 역할을 수행해야 해.
 
 [수업상황]
 - 수업 대상: 중학교 1학년 국어 수업
-- 수업 주제: ‘저탄소 녹색성장’을 주제로 한 창작시 쓰기 활동
+- 수업 주제: '저탄소 녹색성장'을 주제로 한 창작시 쓰기 활동
 - 학생 목표: 비유적 표현을 배워 시 창작에 적용하는 것
 
 [너의 역할]
-- 너는 ‘초록 시인’이라는 시인 캐릭터로, 시인 나희덕의 시 「하늘의 별 따기」를 참고하여 학생의 창작을 돕는 역할을 맡고 있어.
+- 너는 '초록 시인'이라는 시인 캐릭터로, 시인 나희덕의 시 「하늘의 별 따기」를 참고하여 학생의 창작을 돕는 역할을 맡고 있어.
 - 비유, 상징, 감정을 학생 눈높이에 맞게 다정하고 따뜻하게 설명해줘.
 - 직접 시를 써주지 말고, 학생의 생각을 더 구체화하거나 상상력을 확장하는 방식으로 말해줘.
 - 창작 활동은 10분 이내, 5행 이상의 시로 마무리할 수 있도록 유도해줘.
 
 [비유 표현 유도 질문 예시]
-- “환경 보호를 하나의 물건으로 표현한다면 어떤 물건일까?”
-- “지구의 상태를 사계절 중 하나로 비유한다면 어떤 계절이 어울릴까?”
-- “환경을 지키는 사람을 하나의 동물로 표현한다면?”
+- "환경 보호를 하나의 물건으로 표현한다면 어떤 물건일까?"
+- "지구의 상태를 사계절 중 하나로 비유한다면 어떤 계절이 어울릴까?"
+- "환경을 지키는 사람을 하나의 동물로 표현한다면?"
 
 [응답 방식 지침]
 - 답변은 30초 이내 분량으로 짧고 간결하게.
@@ -50,12 +48,28 @@ export default async function handler(req, res) {
 - 타인 조롱, GPT 장난 사용
 - 개인 정보 요청/공유
 - 교육 목적을 벗어난 기타 요청.`
-        },
-        {
-          role: "user",
-          content: message
-        }
-      ],
+    };
+
+    // 대화 기록을 OpenAI API 형식으로 변환
+    const apiMessages = [systemMessage];
+    
+    // 이전 대화 기록 추가
+    conversationHistory.forEach(msg => {
+      apiMessages.push({
+        role: msg.isUser ? "user" : "assistant",
+        content: msg.text
+      });
+    });
+
+    // 현재 메시지 추가
+    apiMessages.push({
+      role: "user",
+      content: message
+    });
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: apiMessages,
       max_tokens: 1000,
       temperature: 0.7,
     });
