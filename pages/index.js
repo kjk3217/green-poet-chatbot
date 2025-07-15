@@ -107,17 +107,13 @@ export default function Home() {
 
       {/* 채팅 영역 */}
       <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
+        {/* 채팅 메시지 영역 - 스크롤 가능 */}
         <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
-                <div className="relative mb-8">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-3xl flex items-center justify-center mx-auto shadow-2xl">
-                    <Sparkles className="w-10 h-10 text-white" />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-white text-sm">✨</span>
-                  </div>
+                <div className="w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-3xl flex items-center justify-center mx-auto shadow-2xl mb-8">
+                  <Sparkles className="w-10 h-10 text-white" />
                 </div>
                 
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
@@ -177,6 +173,7 @@ export default function Home() {
           )}
         </div>
         
+        {/* 입력 영역 - 고정 */}
         <div className="border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm px-4 py-4">
           <ChatInput 
             ref={inputRef}
