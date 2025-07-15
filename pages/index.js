@@ -106,9 +106,9 @@ export default function Home() {
       </header>
 
       {/* 채팅 영역 */}
-      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
+      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full relative">
         {/* 채팅 메시지 영역 - 스크롤 가능 */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth">
+        <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth pb-24">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
@@ -168,16 +168,18 @@ export default function Home() {
             </div>
           )}
         </div>
-        
-        {/* 입력 영역 - 고정 */}
-        <div className="border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm px-4 py-4">
+      </main>
+      
+      {/* 입력 영역 - 화면 하단에 완전히 고정 */}
+      <div className="fixed bottom-0 left-0 right-0 border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm">
+        <div className="max-w-3xl mx-auto px-4 py-4">
           <ChatInput 
             ref={inputRef}
             onSend={handleSendMessage} 
             disabled={isLoading} 
           />
         </div>
-      </main>
+      </div>
     </div>
   );
 }
