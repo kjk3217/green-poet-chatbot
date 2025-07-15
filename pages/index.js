@@ -94,8 +94,13 @@ export default function Home() {
               <Feather className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold title-glow">
-                <span className="emoji-sparkle">🌱</span> 초록시인
+              <h1 className="text-xl font-bold wave-title">
+                <span>🌱</span>
+                <span>&nbsp;</span>
+                <span>초</span>
+                <span>록</span>
+                <span>시</span>
+                <span>인</span>
               </h1>
               <p className="text-sm text-emerald-600 font-medium">저탄소 녹색성장 창작시 AI 도우미</p>
             </div>
