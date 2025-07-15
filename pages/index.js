@@ -106,12 +106,20 @@ export default function Home() {
       </header>
 
       {/* 채팅 영역 */}
-      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full relative">
-        {/* 채팅 메시지 영역 - 스크롤 가능 */}
-        <div className="flex-1 overflow-y-auto px-4 pt-6 pb-32 scroll-smooth">
+      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
+        <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-3xl flex items-center justify-center mx-auto shadow-2xl">
+                    <Sparkles className="w-10 h-10 text-white" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center shadow-lg">
+                    <span className="text-white text-sm">✨</span>
+                  </div>
+                </div>
+                
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
                   안녕하세요, 초록시인입니다
                 </h2>
@@ -168,18 +176,15 @@ export default function Home() {
             </div>
           )}
         </div>
-      </main>
-      
-      {/* 입력 영역 - 화면 하단에 완전히 고정 */}
-      <div className="fixed bottom-0 left-0 right-0 border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm">
-        <div className="max-w-3xl mx-auto px-4 py-4">
+        
+        <div className="border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm px-4 py-4">
           <ChatInput 
             ref={inputRef}
             onSend={handleSendMessage} 
             disabled={isLoading} 
           />
         </div>
-      </div>
+      </main>
     </div>
   );
 }
