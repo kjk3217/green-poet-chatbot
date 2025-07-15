@@ -21,17 +21,9 @@ export default function Home() {
     scrollToBottom();
   }, [messages]);
 
-  // 파티클 생성 제거
-  // useEffect(() => {
-  //   const createParticle = () => {
-  //     // 파티클 코드 제거됨
-  //   };
-  // }, []);
-
   const handleSendMessage = async (message) => {
     const userMessage = { text: message, isUser: true };
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
+    setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
 
     setTimeout(() => {
@@ -46,10 +38,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          message,
-          conversationHistory: messages
-        }),
+        body: JSON.stringify({ message }),
       });
 
       const data = await response.json();
@@ -90,17 +79,12 @@ export default function Home() {
       <header className="border-b border-green-100 bg-white/90 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
         <div className="max-w-3xl mx-auto px-4 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-lg logo-breathe">
+            <div className="w-12 h-12 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-lg">
               <Feather className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold wave-title">
-                <span>🌱</span>
-                <span>&nbsp;</span>
-                <span>초</span>
-                <span>록</span>
-                <span>시</span>
-                <span>인</span>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                🌱 초록시인
               </h1>
               <p className="text-sm text-emerald-600 font-medium">저탄소 녹색성장 창작시 AI 도우미</p>
             </div>
