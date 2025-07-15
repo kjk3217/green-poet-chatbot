@@ -21,39 +21,12 @@ export default function Home() {
     scrollToBottom();
   }, [messages]);
 
-  // 파티클 생성
-  useEffect(() => {
-    const createParticle = () => {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.width = (Math.random() * 4 + 2) + 'px';
-      particle.style.height = particle.style.width;
-      particle.style.animationDelay = Math.random() * 15 + 's';
-      
-      const container = document.querySelector('.floating-particles');
-      if (container) {
-        container.appendChild(particle);
-        
-        // 애니메이션 완료 후 파티클 제거
-        setTimeout(() => {
-          if (particle.parentNode) {
-            particle.parentNode.removeChild(particle);
-          }
-        }, 25000);
-      }
-    };
-
-    // 초기 파티클 생성
-    for (let i = 0; i < 10; i++) {
-      setTimeout(createParticle, i * 1000);
-    }
-
-    // 주기적으로 파티클 생성
-    const interval = setInterval(createParticle, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
+  // 파티클 생성 제거
+  // useEffect(() => {
+  //   const createParticle = () => {
+  //     // 파티클 코드 제거됨
+  //   };
+  // }, []);
 
   const handleSendMessage = async (message) => {
     const userMessage = { text: message, isUser: true };
@@ -112,26 +85,17 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen animated-background flex flex-col relative">
-      {/* 떠다니는 파티클 컨테이너 */}
-      <div className="floating-particles"></div>
-      
-      {/* 웨이브 효과 */}
-      <div className="wave-container">
-        <div className="wave"></div>
-        <div className="wave"></div>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex flex-col">
       {/* 헤더 */}
-      <header className="border-b border-green-100/50 bg-white/80 backdrop-blur-md sticky top-0 z-10 shadow-lg">
+      <header className="border-b border-green-100 bg-white/90 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
         <div className="max-w-3xl mx-auto px-4 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-xl animate-pulse">
+            <div className="w-12 h-12 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-lg logo-breathe">
               <Feather className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                🌱 초록시인
+              <h1 className="text-xl font-bold title-glow">
+                <span className="emoji-sparkle">🌱</span> 초록시인
               </h1>
               <p className="text-sm text-emerald-600 font-medium">저탄소 녹색성장 창작시 AI 도우미</p>
             </div>
@@ -139,7 +103,7 @@ export default function Home() {
           {messages.length > 0 && (
             <button
               onClick={handleNewChat}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-green-600 hover:text-green-700 hover:bg-white/60 rounded-xl transition-all duration-300 border border-green-200/50 backdrop-blur-sm shadow-md hover:shadow-lg"
+              className="flex items-center gap-2 px-4 py-2 text-sm text-green-600 hover:text-green-700 hover:bg-green-50 rounded-xl transition-all duration-200 border border-green-200"
             >
               <RotateCcw className="w-4 h-4" />
               새 대화
@@ -149,16 +113,16 @@ export default function Home() {
       </header>
 
       {/* 채팅 영역 */}
-      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full relative z-5">
+      <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full">
         <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
                 <div className="relative mb-8">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-3xl flex items-center justify-center mx-auto shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                    <Sparkles className="w-10 h-10 text-white animate-pulse" />
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-3xl flex items-center justify-center mx-auto shadow-2xl">
+                    <Sparkles className="w-10 h-10 text-white" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center shadow-lg">
                     <span className="text-white text-sm">✨</span>
                   </div>
                 </div>
@@ -166,7 +130,7 @@ export default function Home() {
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
                   안녕하세요, 초록시인입니다
                 </h2>
-                <p className="text-gray-700 leading-relaxed mb-8 text-lg backdrop-blur-sm bg-white/40 p-4 rounded-2xl shadow-lg">
+                <p className="text-gray-600 leading-relaxed mb-8 text-lg">
                   저탄소 녹색성장을 주제로 한 창작시를 함께 만들어봐요.
                 </p>
                 
@@ -180,10 +144,10 @@ export default function Home() {
                     <button
                       key={index}
                       onClick={() => handleSendMessage(suggestion.text)}
-                      className="group p-4 text-sm text-gray-700 bg-white/70 hover:bg-white/90 rounded-xl transition-all duration-300 text-left border border-green-200/50 hover:border-green-300 shadow-lg hover:shadow-xl backdrop-blur-sm transform hover:scale-[1.02]"
+                      className="group p-4 text-sm text-gray-700 bg-white hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 rounded-xl transition-all duration-300 text-left border border-gray-100 hover:border-green-200 shadow-sm hover:shadow-md"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-lg transform group-hover:scale-110 transition-transform">{suggestion.icon}</span>
+                        <span className="text-lg">{suggestion.icon}</span>
                         <span className="group-hover:text-green-700 transition-colors">{suggestion.text}</span>
                       </div>
                     </button>
@@ -203,7 +167,7 @@ export default function Home() {
               
               {isLoading && (
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg animate-pulse">
+                  <div className="w-10 h-10 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
                     <Feather className="w-5 h-5 text-white" />
                   </div>
                   <div className="flex-1 pt-2">
@@ -220,7 +184,7 @@ export default function Home() {
           )}
         </div>
         
-        <div className="border-t border-green-100/50 bg-white/60 backdrop-blur-md px-4 py-4 shadow-xl">
+        <div className="border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm px-4 py-4">
           <ChatInput 
             ref={inputRef}
             onSend={handleSendMessage} 
