@@ -112,10 +112,6 @@ export default function Home() {
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
-                <div className="w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-3xl flex items-center justify-center mx-auto shadow-2xl mb-8">
-                  <Sparkles className="w-10 h-10 text-white" />
-                </div>
-                
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
                   안녕하세요, 초록시인입니다
                 </h2>
