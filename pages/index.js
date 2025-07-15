@@ -108,7 +108,7 @@ export default function Home() {
       {/* 채팅 영역 */}
       <main className="flex-1 flex flex-col max-w-3xl mx-auto w-full relative">
         {/* 채팅 메시지 영역 - 스크롤 가능 */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth pb-24">
+        <div className="flex-1 overflow-y-auto px-4 pt-6 pb-32 scroll-smooth">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
