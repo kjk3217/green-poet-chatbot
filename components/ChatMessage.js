@@ -25,13 +25,13 @@ export default function ChatMessage({ message, isUser }) {
           <div className={`leading-relaxed whitespace-pre-wrap rounded-2xl p-4 border shadow-sm`} style={
             isUser 
               ? {
-                  color: '#3b5a42',
-                  background: 'rgba(255, 255, 255, 0.9)',
+                  color: '#334e41',
+                  background: '#fffff',
                   borderColor: '#a1b189'
                 }
               : {
                   color: '#334e41',
-                  background: 'rgba(255, 255, 255, 0.7)',
+                  background: '#becbaa',
                   borderColor: '#a1b189'
                 }
           }>
