@@ -26,12 +26,12 @@ export default function ChatMessage({ message, isUser }) {
             isUser 
               ? {
                   color: '#334e41',
-                  background: '#fffff',
+                  background: '#fbfbfa',
                   borderColor: '#a1b189'
                 }
               : {
                   color: '#334e41',
-                  background: '#becbaa',
+                  background: '#d8e0cc',
                   borderColor: '#a1b189'
                 }
           }>
