@@ -23,8 +23,8 @@ export default function ChatMessage({ message, isUser }) {
           <div className={`leading-relaxed whitespace-pre-wrap rounded-2xl p-4 border shadow-sm`} style={
             isUser 
               ? {
-                  color: '#334e41',
-                  background: '#ead5dd',
+                  color: '#934c66',
+                  background: '#fbfbfa',
                   borderColor: '#AA667F'
                 }
               : {
