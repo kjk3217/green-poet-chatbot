@@ -41,7 +41,7 @@ export default function Home() {
         },
         body: JSON.stringify({ 
           message,
-          conversationHistory: messages // 이전 대화 기록 전달
+          conversationHistory: messages
         }),
       });
 
@@ -78,25 +78,41 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{background: 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 50%, #dcd7cb 100%)'}}>
       {/* 헤더 */}
-      <header className="border-b border-green-100 bg-white/90 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
+      <header className="bg-white/90 backdrop-blur-sm sticky top-0 z-10 shadow-sm" style={{borderBottom: '1px solid #a1b189'}}>
         <div className="max-w-3xl mx-auto px-4 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg" style={{background: 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)'}}>
               <Feather className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold" style={{background: 'linear-gradient(135deg, #3b5a42 0%, #334e41 100%)', backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent'}}>
                 🌱 초록시인
               </h1>
-              <p className="text-sm text-emerald-600 font-medium">저탄소 녹색성장 창작시 AI 도우미</p>
+              <p className="text-sm font-medium" style={{color: '#588158'}}>저탄소 녹색성장 창작시 AI 도우미</p>
             </div>
           </div>
           {messages.length > 0 && (
             <button
               onClick={handleNewChat}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-green-600 hover:text-green-700 hover:bg-green-50 rounded-xl transition-all duration-200 border border-green-200"
+              className="flex items-center gap-2 px-4 py-2 text-sm rounded-xl transition-all duration-200 border"
+              style={{
+                color: '#588158',
+                borderColor: '#a1b189',
+                ':hover': {
+                  backgroundColor: '#dcd7cb',
+                  color: '#3b5a42'
+                }
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = '#dcd7cb';
+                e.target.style.color = '#3b5a42';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent';
+                e.target.style.color = '#588158';
+              }}
             >
               <RotateCcw className="w-4 h-4" />
               새 대화
@@ -112,7 +128,7 @@ export default function Home() {
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
                 <div className="relative mb-8">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-3xl flex items-center justify-center mx-auto shadow-2xl">
+                  <div className="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto shadow-2xl" style={{background: 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)'}}>
                     <Sparkles className="w-10 h-10 text-white" />
                   </div>
                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center shadow-lg">
@@ -120,7 +136,7 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-4">
+                <h2 className="text-2xl font-bold mb-4" style={{background: 'linear-gradient(135deg, #3b5a42 0%, #334e41 100%)', backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent'}}>
                   안녕하세요, 초록시인입니다
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8 text-lg">
@@ -137,11 +153,27 @@ export default function Home() {
                     <button
                       key={index}
                       onClick={() => handleSendMessage(suggestion.text)}
-                      className="group p-4 text-sm text-gray-700 bg-white hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 rounded-xl transition-all duration-300 text-left border border-gray-100 hover:border-green-200 shadow-sm hover:shadow-md"
+                      className="group p-4 text-sm text-gray-700 bg-white rounded-xl transition-all duration-300 text-left border border-gray-100 shadow-sm hover:shadow-md"
+                      style={{
+                        ':hover': {
+                          background: 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)',
+                          borderColor: '#a1b189'
+                        }
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)';
+                        e.target.style.borderColor = '#a1b189';
+                        e.target.querySelector('span:last-child').style.color = '#3b5a42';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'white';
+                        e.target.style.borderColor = '#e5e7eb';
+                        e.target.querySelector('span:last-child').style.color = '#374151';
+                      }}
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-lg">{suggestion.icon}</span>
-                        <span className="group-hover:text-green-700 transition-colors">{suggestion.text}</span>
+                        <span className="transition-colors">{suggestion.text}</span>
                       </div>
                     </button>
                   ))}
@@ -160,14 +192,14 @@ export default function Home() {
               
               {isLoading && (
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-400 via-emerald-400 to-teal-400 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg" style={{background: 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)'}}>
                     <Feather className="w-5 h-5 text-white" />
                   </div>
                   <div className="flex-1 pt-2">
                     <div className="flex gap-1 mb-2">
-                      <div className="w-3 h-3 bg-green-400 rounded-full animate-bounce"></div>
-                      <div className="w-3 h-3 bg-emerald-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                      <div className="w-3 h-3 bg-teal-400 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+                      <div className="w-3 h-3 rounded-full animate-bounce" style={{backgroundColor: '#588158'}}></div>
+                      <div className="w-3 h-3 rounded-full animate-bounce" style={{backgroundColor: '#a1b189', animationDelay: '0.2s'}}></div>
+                      <div className="w-3 h-3 rounded-full animate-bounce" style={{backgroundColor: '#3b5a42', animationDelay: '0.4s'}}></div>
                     </div>
                   </div>
                 </div>
@@ -177,7 +209,7 @@ export default function Home() {
           )}
         </div>
         
-        <div className="border-t border-green-100 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50/80 backdrop-blur-sm px-4 py-4">
+        <div className="px-4 py-4 backdrop-blur-sm" style={{borderTop: '1px solid #a1b189', background: 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)'}}>
           <ChatInput 
             ref={inputRef}
             onSend={handleSendMessage} 
