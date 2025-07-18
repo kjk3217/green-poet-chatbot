@@ -24,7 +24,7 @@ export default function ChatMessage({ message, isUser }) {
             isUser 
               ? {
                   color: '#334e41',
-                  background: '#fbfbfa',
+                  background: '#ead5dd',
                   borderColor: '#AA667F'
                 }
               : {
