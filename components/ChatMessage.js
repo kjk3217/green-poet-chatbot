@@ -29,7 +29,7 @@ export default function ChatMessage({ message, isUser }) {
                 }
               : {
                   color: '#334e41',
-                  background: '#e0e7d7',
+                  background: '#fbfbfa',
                   borderColor: '#a1b189'
                 }
           }>
