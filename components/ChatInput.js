@@ -113,7 +113,6 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
       
       <div className="flex items-center justify-between mt-3 px-2">
         <div className="text-xs flex items-center gap-1" style={{color: '#d6aebd'}}>
-          <span>✨</span>
           Shift + Enter로 줄바꿈
         </div>
         <div className="text-xs" style={{color: '#d6aebd'}}>
