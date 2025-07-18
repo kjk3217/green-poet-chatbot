@@ -50,12 +50,12 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
           }
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = '#588158';
+          e.currentTarget.style.borderColor = '#bb7c93';
           e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(88, 129, 88, 0.1), 0 4px 6px -2px rgba(88, 129, 88, 0.05)';
         }}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget)) {
-            e.currentTarget.style.borderColor = '#a1b189';
+            e.currentTarget.style.borderColor = '#d6aebd';
             e.currentTarget.style.boxShadow = 'none';
           }
         }}
