@@ -153,21 +153,19 @@ export default function Home() {
                     <button
                       key={index}
                       onClick={() => handleSendMessage(suggestion.text)}
-                      className="group p-4 text-sm text-gray-700 bg-white rounded-xl transition-all duration-300 text-left border border-gray-100 shadow-sm hover:shadow-md"
+                      className="group p-4 text-sm text-gray-700 bg-white rounded-xl transition-all duration-300 text-left shadow-sm hover:shadow-md"
                       style={{
-                        ':hover': {
-                          background: 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)',
-                          borderColor: '#a1b189'
-                        }
+                        borderColor: '#a1b189',
+                        border: '1px solid #a1b189'
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.background = 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)';
-                        e.target.style.borderColor = '#a1b189';
+                        e.target.style.background = 'white';
+                        e.target.style.borderColor = '#588158';
                         e.target.querySelector('span:last-child').style.color = '#3b5a42';
                       }}
                       onMouseLeave={(e) => {
                         e.target.style.background = 'white';
-                        e.target.style.borderColor = '#e5e7eb';
+                        e.target.style.borderColor = '#a1b189';
                         e.target.querySelector('span:last-child').style.color = '#374151';
                       }}
                     >
