@@ -31,7 +31,7 @@ export default function ChatMessage({ message, isUser }) {
                 }
               : {
                   color: '#334e41',
-                  background: '#d8e0cc',
+                  background: '#e0e7d7',
                   borderColor: '#a1b189'
                 }
           }>
