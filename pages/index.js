@@ -90,7 +90,7 @@ export default function Home() {
               <h1 className="text-xl font-bold" style={{background: 'linear-gradient(135deg, #3b5a42 0%, #334e41 100%)', backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent'}}>
                 🌱 초록시인
               </h1>
-              <p className="text-sm font-medium" style={{color: '#588158'}}>저탄소 녹색성장 창작시 AI 도우미</p>
+              <p className="text-sm font-medium" style={{color: '#588158'}}>창작시 AI 도우미</p>
             </div>
           </div>
           {messages.length > 0 && (
