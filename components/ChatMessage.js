@@ -22,14 +22,19 @@ export default function ChatMessage({ message, isUser }) {
           {isUser ? '나' : '초록시인'}
         </div>
         <div className="prose prose-sm max-w-none">
-          <div className={`leading-relaxed whitespace-pre-wrap rounded-2xl p-4 border shadow-sm ${
+          <div className={`leading-relaxed whitespace-pre-wrap rounded-2xl p-4 border shadow-sm`} style={
             isUser 
-              ? 'text-purple-800 bg-gradient-to-r from-purple-50 to-pink-50 border-purple-100' 
-              : 'text-gray-800 border-gray-100'
-          }`} style={!isUser ? {
-            background: 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)',
-            borderColor: '#a1b189'
-          } : {}}>
+              ? {
+                  color: '#3b5a42',
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  borderColor: '#a1b189'
+                }
+              : {
+                  color: '#334e41',
+                  background: 'rgba(255, 255, 255, 0.7)',
+                  borderColor: '#a1b189'
+                }
+          }>
             {message}
           </div>
         </div>
