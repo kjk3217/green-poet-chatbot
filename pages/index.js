@@ -127,14 +127,6 @@ export default function Home() {
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center">
               <div className="text-center max-w-md">
-                <div className="relative mb-8">
-                  <div className="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto shadow-2xl" style={{background: 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)'}}>
-                    <Sparkles className="w-10 h-10 text-white" />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-white text-sm">✨</span>
-                  </div>
-                </div>
                 
                 <h2 className="text-2xl font-bold mb-4" style={{background: 'linear-gradient(135deg, #3b5a42 0%, #334e41 100%)', backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent'}}>
                   안녕하세요, 초록시인입니다
