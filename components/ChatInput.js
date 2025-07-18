@@ -40,7 +40,26 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
 
   return (
     <div className="relative">
-      <div className="relative flex items-end border-2 border-green-200 rounded-2xl bg-white focus-within:border-green-400 focus-within:shadow-lg transition-all duration-200">
+      <div 
+        className="relative flex items-end border-2 rounded-2xl bg-white transition-all duration-200"
+        style={{
+          borderColor: '#a1b189',
+          ':focus-within': {
+            borderColor: '#588158',
+            boxShadow: '0 10px 15px -3px rgba(88, 129, 88, 0.1), 0 4px 6px -2px rgba(88, 129, 88, 0.05)'
+          }
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.borderColor = '#588158';
+          e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(88, 129, 88, 0.1), 0 4px 6px -2px rgba(88, 129, 88, 0.05)';
+        }}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget)) {
+            e.currentTarget.style.borderColor = '#a1b189';
+            e.currentTarget.style.boxShadow = 'none';
+          }
+        }}
+      >
         <textarea
           ref={textareaRef}
           value={message}
@@ -55,20 +74,44 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
             minHeight: '56px',
             maxHeight: '128px',
           }}
+          onFocus={(e) => {
+            e.target.parentElement.style.borderColor = '#588158';
+            e.target.parentElement.style.boxShadow = '0 10px 15px -3px rgba(88, 129, 88, 0.1), 0 4px 6px -2px rgba(88, 129, 88, 0.05)';
+          }}
         />
         
         <div className="absolute right-3 bottom-3 flex items-center gap-1">
           <button
             onClick={handleSubmit}
             disabled={!message.trim() || disabled}
-            className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed text-white rounded-xl flex items-center justify-center transition-all duration-200 shadow-lg"
+            className="w-10 h-10 text-white rounded-xl flex items-center justify-center transition-all duration-200 shadow-lg disabled:cursor-not-allowed"
+            style={{
+              background: !message.trim() || disabled 
+                ? 'linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%)'
+                : 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)',
+              ':hover': !message.trim() || disabled 
+                ? {}
+                : {
+                  background: 'linear-gradient(135deg, #3b5a42 0%, #334e41 100%)'
+                }
+            }}
+            onMouseEnter={(e) => {
+              if (!(!message.trim() || disabled)) {
+                e.target.style.background = 'linear-gradient(135deg, #3b5a42 0%, #334e41 100%)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!(!message.trim() || disabled)) {
+                e.target.style.background = 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)';
+              }
+            }}
           >
             <Send className="w-5 h-5" />
           </button>
         </div>
       </div>
       
-      <div className="flex items-center justify-between mt-3 px-2 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+      <div className="flex items-center justify-between mt-3 px-2" style={{background: 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)'}}>
         <div className="text-xs text-gray-500 flex items-center gap-1">
           <span>✨</span>
           Shift + Enter로 줄바꿈
