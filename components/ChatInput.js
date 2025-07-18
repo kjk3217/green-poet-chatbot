@@ -43,9 +43,9 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
       <div 
         className="relative flex items-end border-2 rounded-2xl bg-white transition-all duration-200"
         style={{
-          borderColor: '#a1b189',
+          borderColor: '#d6aebd',
           ':focus-within': {
-            borderColor: '#588158',
+            borderColor: '#bb7c93',
             boxShadow: '0 10px 15px -3px rgba(88, 129, 88, 0.1), 0 4px 6px -2px rgba(88, 129, 88, 0.05)'
           }
         }}
@@ -88,7 +88,7 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
             style={{
               background: !message.trim() || disabled 
                 ? 'linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%)'
-                : 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)',
+                : 'linear-gradient(135deg, #d6aebd 0%, #bb7c93 100%)',
               ':hover': !message.trim() || disabled 
                 ? {}
                 : {
