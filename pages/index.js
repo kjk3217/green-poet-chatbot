@@ -209,7 +209,7 @@ export default function Home() {
           )}
         </div>
         
-        <div className="px-4 py-4 backdrop-blur-sm" style={{borderTop: '1px solid #a1b189', background: 'linear-gradient(135deg, #dcd7cb 0%, #f5f3ed 100%)'}}>
+        <div className="px-4 py-4 backdrop-blur-sm" style={{borderTop: '1px solid rgba(161, 177, 137, 0.3)'}}>
           <ChatInput 
             ref={inputRef}
             onSend={handleSendMessage} 
