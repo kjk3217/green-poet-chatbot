@@ -97,12 +97,12 @@ const ChatInput = forwardRef(({ onSend, disabled }, ref) => {
             }}
             onMouseEnter={(e) => {
               if (!(!message.trim() || disabled)) {
-                e.target.style.background = 'linear-gradient(135deg, #bb7c93 0%, #bb7c93 100%)';
+                e.target.style.background = 'linear-gradient(135deg, #d6aebd 0%, #bb7c93 100%)';
               }
             }}
             onMouseLeave={(e) => {
               if (!(!message.trim() || disabled)) {
-                e.target.style.background = 'linear-gradient(135deg, #588158 0%, #3b5a42 100%)';
+                e.target.style.background = 'linear-gradient(135deg, #bb7c93 0%, #d6aebd 100%)';
               }
             }}
           >
